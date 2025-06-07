@@ -1,0 +1,27 @@
+scalar JSON
+
+type Query {
+  # ETH balance of an address (in Wei as string)
+  balance(address: String!): String!
+
+  # Transactions for an address
+  transactions(address: String!): [Transaction!]!
+
+  # Prices for a list of token IDs (e.g. "ethereum", "usd-coin")
+  tokenPrices(ids: [String!]!): [TokenPrice!]!
+}
+
+type Transaction {
+  hash: String!
+  from: String!
+  to: String!
+  value: String!        # in Wei
+  timestamp: String!    # use String instead of Int
+}
+
+type TokenPrice {
+  id: String!           # e.g. "ethereum"
+  currency: String!     # e.g. "usd"
+  price: Float!
+  last_updated: String! # ISO timestamp as String
+}
